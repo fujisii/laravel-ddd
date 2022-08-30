@@ -1,24 +1,27 @@
 <?php
 
+require_once 'firstname.php';
+require_once 'lastname.php';
+
 class FullName
 {
     private FirstName $FirstName;
-    private string $LastName;
+    private LastName $LastName;
 
     public function __construct(FirstName $firstName, LastName $lastName)
     {
-        $this->FirstName = $firstName->getValue();
-        $this->LastName = $lastName->getValue();
+        $this->FirstName = $firstName;
+        $this->LastName = $lastName;
     }
 
     public function getFirstName()
     {
-        return $this->FirstName;
+        return $this->FirstName->getValue();
     }
 
     public function getLastName()
     {
-        return $this->LastName;
+        return $this->LastName->getValue();
     }
 
     public function Equals(FullName $other)
@@ -30,8 +33,8 @@ class FullName
     }
 }
 
-$fullName1 = new FullName('hoge', 'fuga');
-$fullName2 = new FullName('foo', 'bar');
+$fullName1 = new FullName(new FirstName('hoge'), new LastName('fuga'));
+$fullName2 = new FullName(new FirstName('foo'), new LastName('bar'));
 
 var_export($fullName1->Equals($fullName2)); // false
 var_export($fullName1->Equals($fullName1)); // true
