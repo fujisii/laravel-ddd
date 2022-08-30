@@ -2,14 +2,14 @@
 
 class FullName
 {
-    public function __construct(string $firstName, string $lastName)
-    {
-        $this->FirstName = $firstName;
-        $this->LastName = $lastName;
-    }
-
-    private string $FirstName;
+    private FirstName $FirstName;
     private string $LastName;
+
+    public function __construct(FirstName $firstName, LastName $lastName)
+    {
+        $this->FirstName = $firstName->getValue();
+        $this->LastName = $lastName->getValue();
+    }
 
     public function getFirstName()
     {
