@@ -1,28 +1,39 @@
 <?php
 declare(strict_types=1);
 
-require_once 'firstname.php';
-require_once 'lastname.php';
+// require_once 'firstname.php';
+// require_once 'lastname.php';
 
 class FullName
 {
-    private FirstName $FirstName;
-    private LastName $LastName;
+    private string $FirstName;
+    private string $LastName;
 
-    public function __construct(FirstName $firstName, LastName $lastName)
+    public function __construct(string $firstName, string $lastName)
     {
+        if ($firstName === '') throw new InvalidArgumentException('$firstName:null');
+        if ($lastName === '') throw new InvalidArgumentException('$lastName:null');
+        if (!$this->ValidateName($firstName)) throw new InvalidArgumentException('$firstName:許可されていない文字が使われています。');
+        if (!$this->ValidateName($lastName)) throw new InvalidArgumentException('$lastName:許可されていない文字が使われています。');
+
         $this->FirstName = $firstName;
         $this->LastName = $lastName;
     }
 
+    private function ValidateName(string $value)
+    {
+        // アルファベットに限定する
+        return preg_match('/^[a-zA-Z]+$/', $value);
+    }
+
     public function getFirstName()
     {
-        return $this->FirstName->getValue();
+        return $this->FirstName;
     }
 
     public function getLastName()
     {
-        return $this->LastName->getValue();
+        return $this->LastName;
     }
 
     public function Equals(FullName $other)
@@ -34,8 +45,8 @@ class FullName
     }
 }
 
-$fullName1 = new FullName(new FirstName('hoge'), new LastName('fuga'));
-$fullName2 = new FullName(new FirstName('foo'), new LastName('bar'));
+$fullName1 = new FullName('hoge', 'fuga');
+$fullName2 = new FullName('foo', 'bar');
 
 var_export($fullName1->Equals($fullName2)); // false
 var_export($fullName1->Equals($fullName1)); // true
