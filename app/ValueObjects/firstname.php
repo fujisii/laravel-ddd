@@ -7,7 +7,7 @@ class FirstName
     public function __construct(string $value)
     {
         if (is_null($value) || empty($value))
-            new InvalidArgumentException('1文字以上であう必要があります。');
+            throw new InvalidArgumentException('1文字以上である必要があります。');
         $this->value = $value;
     }
 
@@ -16,6 +16,3 @@ class FirstName
         return $this->value;
     }
 }
-
-$firstName = new FirstName('aaa');
-echo $firstName->getValue();

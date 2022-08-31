@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 require_once 'firstname.php';
 require_once 'lastname.php';
