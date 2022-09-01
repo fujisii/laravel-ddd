@@ -13,4 +13,20 @@ class Money
         $this->amount = $amount;
         $this->currency = $currency;
     }
+
+    public function Add(Money $arg)
+    {
+        if (is_null($arg)) throw new InvalidArgumentException('$arg is Null.');
+        if ($this->currency !== $arg->currency) throw new InvalidArgumentException('通貨単位が異なります。');
+
+        return new Money($this->amount + $arg->amount, $this->currency);
+    }
 }
+
+$myMoney = new Money(1000, 'JPY');
+$allowance = new Money(3000, 'JPY');
+$result = $myMoney->Add($allowance);
+
+$myMoney = new Money(1000, 'JPY');
+$allowance = new Money(3000, 'USD');
+$result = $myMoney->Add($allowance);
