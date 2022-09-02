@@ -20,6 +20,6 @@ class ModelNumber
 
     public function ToString()
     {
-        return new $this->productCode . '-' . $this->branch . '-' . $this->lot;
+        return $this->productCode . '-' . $this->branch . '-' . $this->lot;
     }
 }
