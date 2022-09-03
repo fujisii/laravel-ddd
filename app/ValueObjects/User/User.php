@@ -36,5 +36,6 @@ class User
     {
         $user = new User();
         $user->setId($Name);
+        return $user;
     }
 }
