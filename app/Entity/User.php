@@ -7,6 +7,11 @@ class User
 
     public function __construct(string $name)
     {
+        $this->ChangeName($name);
+    }
+
+    public function ChangeName(string $name): void
+    {
         if ($name === '') throw new InvalidArgumentException('1文字以上である必要があります。');
         if (mb_strlen($name) < 3) throw new InvalidArgumentException('ユーザー名は3文字以上です。');
 
