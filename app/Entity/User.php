@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
 
+use phpDocumentor\Reflection\Types\Boolean;
+
 require_once 'UserId.php';
 
 class User
 {
-    private UserId $id;
+    public readonly UserId $id;
     private string $name;
 
     public function __construct(UserId $id, string $name)
@@ -24,4 +26,15 @@ class User
 
         $this->name = $name;
     }
+
+    public function Equals(User $other): bool
+    {
+        if (null === $other) return false;
+        if ($this === $other) return true;
+        return $this->id->getValue() === $other->id->getValue();
+    }
 }
+
+$user1 = new User(new UserId('foo'), 'bar');
+$user2 = new User(new UserId('foo2'), 'bar2');
+echo $user1->Equals($user2);
