@@ -11,7 +11,7 @@ class User
     public function __construct(UserId $id, string $name)
     {
         if (is_null($id)) throw new InvalidArgumentException('$id is null.');
-        if (is_null($name)) throw new InvalidArgumentException('$id is null');
+        if (is_null($name)) throw new InvalidArgumentException('$name is null');
 
         $this->id = $id;
         $this->name = $name;
