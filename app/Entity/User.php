@@ -14,7 +14,14 @@ class User
         if (is_null($name)) throw new InvalidArgumentException('$name is null');
 
         $this->id = $id;
-        $this->name = $name;
+        $this->ChangeUserName($name);
     }
 
+    public function ChangeUserName(string $name): void
+    {
+        if (is_null($name)) throw new InvalidArgumentException('$name is null.');
+        if (mb_strlen($name) < 3) throw new InvalidArgumentException('ユーザー名は3文字以上です。');
+
+        $this->name = $name;
+    }
 }
