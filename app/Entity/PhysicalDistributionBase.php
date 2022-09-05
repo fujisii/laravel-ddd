@@ -25,4 +25,17 @@ class PhysicalDistributionBase
     public function Receive(Baggage $baggage): void
     {
     }
+
+    /**
+     * 輸送
+     *
+     * @param PhysicalDistributionBase $to
+     * @param Baggage $baggage
+     * @return void
+     */
+    public function Transport(PhysicalDistributionBase $to, Baggage $baggage): void
+    {
+        $shippedBaggage = $this->Ship($baggage);
+        $to->Receive($shippedBaggage);
+    }
 }
