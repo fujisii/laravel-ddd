@@ -1,4 +1,15 @@
 <?php
+declare(strict_types=1);
+
+require_once '../Entity/User.php';
+require_once '../ValueObjects/UserName.php';
+
+interface IUserRepository
+{
+    public function Save(User $user);
+    public function Find(UserName $name);
+    public function Exists(User $user);
+}
 
 /**
  * ユーザー
