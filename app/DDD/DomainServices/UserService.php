@@ -6,9 +6,9 @@ require_once '../ValueObjects/UserName.php';
 
 interface IUserRepository
 {
-    public function Save(User $user);
-    public function Find(UserName $name);
-    public function Exists(User $user);
+    public function Save(User $user): void;
+    public function Find(UserName $name): User;
+    public function Exists(UserName $name): bool;
 }
 
 /**
