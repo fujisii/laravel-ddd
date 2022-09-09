@@ -1,25 +1,18 @@
 <?php
 declare(strict_types=1);
 
-use IUserRepository as GlobalIUserRepository;
-
+require_once './Repositories/IUserRepository.php';
 require_once './Repositories/UserRepository.php';
 require_once './DomainService/UserService.php';
 
 require_once './Entities/User/User.php';
 require_once './Entities/User/UserName.php';
 
-interface IUserRepository
-{
-    public function Save(User $user): void;
-    public function Find(UserName $name): User;
-}
-
 class Program
 {
     private IUserRepository $userRepository;
 
-    public function __construct(userRepository $userRepository)
+    public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }

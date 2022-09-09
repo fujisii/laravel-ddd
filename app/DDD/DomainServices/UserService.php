@@ -2,18 +2,8 @@
 declare(strict_types=1);
 
 require_once '../Entity/User.php';
-require_once '../ValueObjects/UserName.php';
+require_once './Repositories/IUserRepository.php';
 
-interface IUserRepository
-{
-    public function Save(User $user): void;
-    public function Find(UserName $name): User;
-    public function Exists(UserName $name): bool;
-}
-
-/**
- * ユーザー
- */
 class UserService
 {
     private IUserRepository $userRepository;
